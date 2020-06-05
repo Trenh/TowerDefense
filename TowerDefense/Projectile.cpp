@@ -22,7 +22,7 @@ Projectile::~Projectile()
 {
 }
 
-
+// SDL RECT
 SDL_Rect Projectile::toRect()
 {
 
@@ -31,6 +31,7 @@ SDL_Rect Projectile::toRect()
 }
 
 
+//draw
 void Projectile::draw(SDL_Renderer* renderer, RessourceManager* resMan) {
 	//draw himself
 	//get the size
@@ -40,6 +41,7 @@ void Projectile::draw(SDL_Renderer* renderer, RessourceManager* resMan) {
 
 }
 
+// update the movement and if touch explose
 void Projectile::update() {
 
 	if (target == NULL) {
@@ -72,14 +74,17 @@ void Projectile::update() {
 	
 }
 
+//destroy the projectile 
 void Projectile::destroy() {
 	myLevel->deleteProjectile(this);
 }
 
+//set target
 void Projectile::setTarget(Enemy* enemy) {
 	target = enemy;
 }
 
+//setup pointer level
 void Projectile::setLevel(Level* level) {
 	myLevel = level;
 }

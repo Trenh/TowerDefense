@@ -19,7 +19,7 @@ Plot::~Plot()
 {
 }
 
-
+/// SDL RECT
 SDL_Rect Plot::toRect()
 {
 
@@ -27,6 +27,7 @@ SDL_Rect Plot::toRect()
 	return rect;
 }
 
+//draw
 void Plot::draw(SDL_Renderer* renderer, RessourceManager* resMan) {
 	
 	//draw himself
@@ -41,6 +42,7 @@ void Plot::draw(SDL_Renderer* renderer, RessourceManager* resMan) {
 	}
 }
 
+//update my tower if i got one
 void Plot::update() {
 	if (hasTower) {
 		myTower->update();
@@ -48,52 +50,60 @@ void Plot::update() {
 	}
 }
 
+// construct a tower
 void Plot::constructTower(int selectIndex) {
-//	cout << "vasy on est la ";
+//	cout << "construction of tower ";
 	if (myLevel->getPlayer()->getGold() > getTowerCost(selectIndex,0)) {
 		myLevel->getPlayer()->setGold(myLevel->getPlayer()->getGold() - getTowerCost(selectIndex, 0));
 		hasTower = true;
 		myTower = new Tower(xPos, yPos, getTowerCost(selectIndex, 0), 0, selectIndex);
-//		myTower = new Tower(xPos, yPos, height, width, 40, 150, 2000, 0, "tower.png",0);
 		myTower->setPlot(this);
 	}
-//if gold>cost
-	//reduce gold
 
 }
+
+//return image name 
 const char* Plot::getImgName() {
 	return imgName;
 }
+
+// return position
 Point Plot::getPos() {
 	Point temp = { xPos, yPos };
 	return temp;
 }
 
+//return bollean if it's in range
 bool Plot::isInRange(Point p) {
 	
+
 	return (xPos <= p.xPos &&
 		p.xPos <= xPos + width &&
 		yPos <= p.yPos &&
 		p.yPos <= yPos + height);
 }
 
+//return if it has  tower
 bool Plot::getHasTower() {
 	return hasTower;
 }
 
+// set bool hasTower
 void Plot::setHasTower(bool tower) {
 	hasTower= tower;
 }
 
-
+//return mylevel pointer
 Level* Plot::getLevel() {
 	return myLevel;
 }
 
+//set level pointer
 void Plot::setLevel(Level* level) {
 	myLevel = level;
 }
 
+// get tower cost
 int Plot::getTowerCost(int selectIndex, int upgradelevel) {
 	switch (selectIndex)
 	{

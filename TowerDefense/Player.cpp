@@ -16,51 +16,63 @@ Player::~Player()
 {
 }
 
-
+// set gold
 void Player::setGold(int newgold) {
 	gold = newgold;
 };
+
+
+//set health
 void Player::setHealth(int newhealth) {
 	health = newhealth;
 }
 
+//return health
 int Player::getHealth() {
 	return health;
 }
 
+//return gold
 int Player::getGold() {
 	return gold;
 }
 
+
+//add an amount of gold
 void Player::addGold(int bounty) {
 	gold += bounty;
 //	updateGoldText();
 };
 
+//minus a certain amount of health
 void Player::loseHealth(int damage) {
 	health -= damage;
 	if (health <= 0) {
+		//death
 
 	}
 //	updateHealthText();
 };
 
-
+//return the index 
 int Player::getIndex() {
 	return indexSelected;
 }
 
+//set the index
 void Player::setIndex(int index) {
 	indexSelected = index;
 
 }
 
+//load text
 void Player::load(SDL_Renderer* renderer) {
 	healthDisplay.load(renderer, "");
 	waveDisplay.load(renderer, "");
 	goldDisplay.load(renderer, "");
 }
 
+//draw all of that
 void Player::draw(SDL_Renderer* renderer, RessourceManager* resMan,int wave) {
 	//change the text of the interface
 	char goldString[32];

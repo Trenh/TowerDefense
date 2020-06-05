@@ -40,6 +40,8 @@ bool InputHandler::handleAllInput(Level* level) {
 			break;
 
 		case SDL_KEYDOWN:
+
+			//set player index of tower to correspondant tower
 			if (event.key.keysym.sym == SDLK_1) {
 				level->getPlayer()->setIndex(0);
 			}
